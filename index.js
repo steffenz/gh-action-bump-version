@@ -126,8 +126,9 @@ const workspace = process.env.GITHUB_WORKSPACE;
       'user.email',
       `"${process.env.GITHUB_EMAIL || 'gh-action-bump-version@users.noreply.github.com'}"`,
     ]);
-
-    let currentBranch = process.env.GITHUB_REF ? /refs\/[a-zA-Z]+\/(.*)/.exec(process.env.GITHUB_REF)[1] : '';
+    
+    console.log(process.env.GITHUB_REF);
+    let currentBranch = process.env.GITHUB_REF && process.env.GITHUB_REF !== null ? /refs\/[a-zA-Z]+\/(.*)/.exec(process.env.GITHUB_REF)[1] : '';
     let isPullRequest = false;
     if (process.env.GITHUB_HEAD_REF) {
       // Comes from a pull request
